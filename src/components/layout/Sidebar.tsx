@@ -48,11 +48,25 @@ const FEATURED: NavItem[] = [
 interface SidebarProps {
   activeKey: SidebarKey;
   onSelect: (key: SidebarKey) => void;
+  drawerOpen?: boolean;
+  onClose?: () => void;
 }
 
-export function Sidebar({ activeKey, onSelect }: SidebarProps) {
+export function Sidebar({ activeKey, onSelect, drawerOpen, onClose }: SidebarProps) {
   return (
-    <aside className={styles.root}>
+    <>
+      {drawerOpen && (
+        <div
+          className={styles.scrim}
+          onClick={onClose}
+          role="presentation"
+          aria-hidden
+        />
+      )}
+      <aside
+        className={`${styles.root} ${drawerOpen ? styles.drawerOpen : ''}`}
+        aria-hidden={!drawerOpen ? undefined : false}
+      >
       <nav className={styles.nav}>
         <div className={styles.sectionLabel}>Casino</div>
         <ul className={styles.list}>
@@ -107,6 +121,7 @@ export function Sidebar({ activeKey, onSelect }: SidebarProps) {
       <div className={styles.footnote}>
         Visual demo only · No real money · 18+
       </div>
-    </aside>
+      </aside>
+    </>
   );
 }

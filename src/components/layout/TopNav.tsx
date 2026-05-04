@@ -1,4 +1,12 @@
-import { BellIcon, ChipIcon, LogoMark, PlusIcon, SearchIcon } from '../common/icons';
+import {
+  BellIcon,
+  ChipIcon,
+  CloseIcon,
+  LogoMark,
+  MenuIcon,
+  PlusIcon,
+  SearchIcon,
+} from '../common/icons';
 import styles from './TopNav.module.css';
 
 interface TopNavProps {
@@ -6,15 +14,34 @@ interface TopNavProps {
   onDeposit: () => void;
   search: string;
   onSearchChange: (v: string) => void;
+  onMenuToggle?: () => void;
+  menuOpen?: boolean;
 }
 
 const formatBalance = (n: number) =>
   n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-export function TopNav({ balance, onDeposit, search, onSearchChange }: TopNavProps) {
+export function TopNav({
+  balance,
+  onDeposit,
+  search,
+  onSearchChange,
+  onMenuToggle,
+  menuOpen,
+}: TopNavProps) {
   return (
     <header className={styles.root}>
       <div className={styles.left}>
+        {onMenuToggle && (
+          <button
+            type="button"
+            className={styles.menuBtn}
+            onClick={onMenuToggle}
+            aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {menuOpen ? <CloseIcon /> : <MenuIcon />}
+          </button>
+        )}
         <div className={styles.brand}>
           <LogoMark className={styles.logo} aria-hidden />
           <div className={styles.brandText}>

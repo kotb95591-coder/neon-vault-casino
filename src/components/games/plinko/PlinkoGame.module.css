@@ -1,0 +1,252 @@
+.frame {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 18px;
+  border-radius: var(--r-xl);
+  background:
+    radial-gradient(120% 90% at 50% 0%, rgba(180, 108, 255, 0.12), transparent 60%),
+    linear-gradient(180deg, #1d1530 0%, #07050d 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+.history {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 6px 4px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  min-height: 32px;
+}
+
+.histChip {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.boardWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.board {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 13 / 12;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background:
+    radial-gradient(70% 70% at 50% 0%, rgba(180, 108, 255, 0.1), transparent 70%),
+    linear-gradient(180deg, #050308 0%, #0a0612 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pegs {
+  position: absolute;
+  inset: 0;
+}
+
+.peg {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  margin-left: -3px;
+  margin-top: -3px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, #b46cff 80%);
+  box-shadow: 0 0 4px rgba(180, 108, 255, 0.6);
+}
+
+.ball {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  margin-left: -7px;
+  margin-top: -7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, #ffd86b 60%, #ff944c 100%);
+  box-shadow:
+    0 0 12px rgba(255, 216, 107, 0.85),
+    0 2px 4px rgba(0, 0, 0, 0.5);
+  transition:
+    left 90ms cubic-bezier(0.45, 0.05, 0.55, 0.95),
+    top 90ms cubic-bezier(0.45, 0.05, 0.55, 0.95);
+  z-index: 5;
+}
+
+.slots {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  gap: 4px;
+}
+
+.slot {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 800;
+  text-align: center;
+  padding: 6px 0;
+  border-radius: 6px;
+  color: #07050d;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  font-variant-numeric: tabular-nums;
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.4fr;
+  gap: 14px;
+}
+
+.riskBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  font-weight: 600;
+}
+
+.riskRow {
+  display: flex;
+  gap: 6px;
+}
+
+.riskBtn {
+  flex: 1;
+  height: 30px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text-mute);
+  font-weight: 700;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+
+.riskBtn[data-active] {
+  background: linear-gradient(135deg, rgba(255, 216, 107, 0.3), rgba(247, 162, 58, 0.25));
+  border-color: rgba(255, 216, 107, 0.55);
+  color: #fff;
+}
+
+.dropBtn {
+  border-radius: var(--r-md);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 0;
+  padding: 14px 20px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #ffd86b, #f7c948);
+  color: #2a1d04;
+  box-shadow: 0 16px 30px rgba(247, 201, 72, 0.35);
+  transition: filter 0.15s, transform 0.15s;
+}
+
+.dropBtn:hover:not(:disabled) {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.dropBtn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.rules {
+  padding: 16px 18px;
+  background: linear-gradient(180deg, rgba(28, 23, 48, 0.8), rgba(20, 16, 31, 0.92));
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+
+.rulesTitle {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.payoutList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.payoutRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.payoutRow:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.slotIdx {
+  color: var(--text-mute);
+}
+
+.payoutMult {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.statBlock {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.statLabel {
+  color: var(--text-mute);
+  font-size: 12px;
+}
+
+.statValue {
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 700px) {
+  .frame {
+    padding: 12px;
+  }
+  .controls {
+    grid-template-columns: 1fr;
+  }
+  .slot {
+    font-size: 9px;
+    padding: 4px 0;
+  }
+}
