@@ -23,6 +23,29 @@
   flex: 1;
 }
 
+.menuBtn {
+  display: none;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.menuBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.menuBtn svg {
+  width: 22px;
+  height: 22px;
+}
+
 .brand {
   display: flex;
   align-items: center;
@@ -281,11 +304,56 @@
 }
 
 @media (max-width: 900px) {
+  .menuBtn {
+    display: inline-flex;
+  }
   .brandText,
   .profileText {
     display: none;
   }
   .search {
     display: none;
+  }
+  .left {
+    gap: 12px;
+  }
+  .right {
+    gap: 8px;
+  }
+  .balancePill {
+    padding: 4px 4px 4px 12px;
+    height: 42px;
+  }
+  .balanceCol {
+    display: none;
+  }
+  .iconBtn {
+    width: 40px;
+    height: 40px;
+  }
+  .profile {
+    height: 42px;
+    padding: 4px;
+  }
+  .avatar {
+    width: 34px;
+    height: 34px;
+  }
+}
+
+@media (max-width: 480px) {
+  .root {
+    padding: 0 10px;
+  }
+  .iconBtn {
+    display: none;
+  }
+  .depositBtn span {
+    display: none;
+  }
+  .depositBtn {
+    width: 36px;
+    padding: 0;
+    justify-content: center;
   }
 }

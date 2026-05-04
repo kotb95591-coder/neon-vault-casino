@@ -2,7 +2,7 @@ import { useCallback, useState } from 'react';
 import { AppLayout } from './components/layout/AppLayout';
 import type { SidebarKey } from './components/layout/Sidebar';
 import { Lobby } from './components/lobby/Lobby';
-import { SlotMachine } from './components/slot/SlotMachine';
+import { GameRouter } from './components/games/GameRouter';
 import type { GameMeta } from './types';
 
 const STARTING_BALANCE = 5000;
@@ -37,7 +37,7 @@ export default function App() {
       onSearchChange={setSearch}
     >
       {openGame ? (
-        <SlotMachine
+        <GameRouter
           game={openGame}
           balance={balance}
           onBalanceChange={setBalance}

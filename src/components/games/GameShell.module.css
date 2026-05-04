@@ -1,0 +1,164 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 18px;
+  background: linear-gradient(180deg, rgba(28, 23, 48, 0.8), rgba(20, 16, 31, 0.92));
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+  padding: 0 12px 0 8px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  transition: background 0.2s;
+}
+
+.backBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.backBtn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.titleArea {
+  flex: 1;
+  min-width: 0;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff7d4 0%, #ffd86b 60%, #b46cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 1.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-mute);
+  margin-top: 4px;
+  letter-spacing: 0.4px;
+  flex-wrap: wrap;
+}
+
+.dot {
+  width: 3px;
+  height: 3px;
+  background: var(--text-faint);
+  border-radius: 50%;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.balanceCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 6px 16px;
+  border-radius: var(--r-md);
+  border: 1px solid rgba(247, 201, 72, 0.3);
+  background: rgba(247, 201, 72, 0.08);
+}
+
+.balanceLabel {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+
+.balanceValue {
+  font-weight: 800;
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(135deg, #ffeaa3, #f7c948);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.body {
+  display: block;
+}
+
+.bodyWithAside {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  align-items: start;
+}
+
+.main {
+  min-width: 0;
+}
+
+.aside {
+  position: sticky;
+  top: calc(var(--topnav-h) + 12px);
+}
+
+@media (max-width: 1100px) {
+  .bodyWithAside {
+    grid-template-columns: 1fr;
+  }
+  .aside {
+    position: static;
+  }
+}
+
+@media (max-width: 700px) {
+  .header {
+    flex-wrap: wrap;
+    padding: 10px 12px;
+    gap: 10px;
+  }
+  .titleArea {
+    flex-basis: 100%;
+    order: 3;
+  }
+  .title {
+    font-size: 18px;
+    letter-spacing: 1px;
+  }
+  .balanceCard {
+    padding: 4px 10px;
+  }
+  .balanceValue {
+    font-size: 15px;
+  }
+  .meta {
+    font-size: 10px;
+  }
+}

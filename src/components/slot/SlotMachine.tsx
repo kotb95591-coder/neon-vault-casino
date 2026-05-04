@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import type { Dispatch, SetStateAction } from 'react';
 import type { GameMeta, SpinResult, SymbolId, WinLine } from '../../types';
 import { BET_LEVELS, PAYLINES, REELS, ROWS } from '../../data/slotConfig';
 import { ChevronLeftIcon } from '../common/icons';
@@ -12,7 +13,7 @@ import styles from './SlotMachine.module.css';
 interface SlotMachineProps {
   game: GameMeta;
   balance: number;
-  onBalanceChange: (b: number) => void;
+  onBalanceChange: Dispatch<SetStateAction<number>>;
   onExit: () => void;
 }
 
@@ -67,7 +68,7 @@ export function SlotMachine({
     }
     setShowOverlay(false);
     setWinCycleIndex(0);
-    onBalanceChange(balance - totalBet);
+    onBalanceChange((b) => b - totalBet);
     settledCountRef.current = 0;
     const next = spinEngine(totalBet, lines);
     setResult(null);
@@ -78,7 +79,7 @@ export function SlotMachine({
     cycleTimerRef.current = window.setTimeout(() => {
       setResult(next);
       setSpinning(false);
-      onBalanceChange(balance - totalBet + next.totalWin);
+      onBalanceChange((b) => b + next.totalWin);
       if (next.totalWin > 0) {
         setShowOverlay(true);
         overlayTimerRef.current = window.setTimeout(() => {
@@ -150,8 +151,19 @@ export function SlotMachine({
     return path;
   }, [activeLine, result, spinning]);
 
+  const themeStyle = useMemo<React.CSSProperties>(() => {
+    if (!game.theme) return {};
+    return {
+      ['--slot-accent' as string]: game.theme.accent,
+      ['--slot-accent-2' as string]: game.theme.accent2,
+      ['--slot-bg' as string]: game.theme.bg,
+      ['--slot-frame' as string]: game.theme.frame,
+      ['--slot-cell-bg' as string]: game.theme.cellBg,
+    };
+  }, [game.theme]);
+
   return (
-    <div className={styles.root}>
+    <div className={styles.root} style={themeStyle}>
       <header className={styles.header}>
         <button type="button" className={styles.backBtn} onClick={onExit}>
           <ChevronLeftIcon />
@@ -284,7 +296,8 @@ function PaylinePath({ path }: { path: number[] }) {
       <polyline
         points={points}
         fill="none"
-        stroke="rgba(255, 216, 107, 0.85)"
+        stroke="var(--slot-accent, #ffd86b)"
+        strokeOpacity="0.85"
         strokeWidth="0.7"
         strokeLinecap="round"
         strokeLinejoin="round"
