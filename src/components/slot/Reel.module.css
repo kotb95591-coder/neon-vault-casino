@@ -1,0 +1,110 @@
+.root {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(0, 0, 0, 0.18)),
+    rgba(8, 5, 16, 0.85);
+}
+
+.window {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.strip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  will-change: transform;
+  /* Strip is taller than the window. Translate up by 37/40 = 92.5% of its own
+     height so only the top 3 cells (the final symbols) are visible when
+     translateY = 0. */
+}
+
+.cell {
+  position: relative;
+  flex-shrink: 0;
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  padding: 8%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.symbol {
+  width: 84%;
+  height: 84%;
+  display: block;
+}
+
+.symbol > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.6));
+}
+
+.overlayHighlights {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.frame {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  height: calc(100% / 3);
+  padding: 4px;
+  border-radius: 12px;
+  border: 2px solid #ffd86b;
+  box-shadow:
+    0 0 18px rgba(255, 216, 107, 0.55),
+    inset 0 0 20px rgba(255, 216, 107, 0.32);
+  animation: frame-glow 1.2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.fadeTop,
+.fadeBottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 18%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.fadeTop {
+  top: 0;
+  background: linear-gradient(180deg, rgba(7, 5, 13, 0.7), transparent);
+}
+
+.fadeBottom {
+  bottom: 0;
+  background: linear-gradient(0deg, rgba(7, 5, 13, 0.7), transparent);
+}
+
+/* Reel scroll animation lives in src/index.css as a global keyframe so it can
+   be applied via the inline `animation-name` style. */
+
+@keyframes frame-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 12px rgba(255, 216, 107, 0.45),
+      inset 0 0 14px rgba(255, 216, 107, 0.28);
+  }
+  50% {
+    box-shadow:
+      0 0 28px rgba(255, 216, 107, 0.85),
+      inset 0 0 24px rgba(255, 216, 107, 0.5);
+  }
+}
