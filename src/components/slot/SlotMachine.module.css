@@ -1,0 +1,309 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 14px 18px;
+  background:
+    linear-gradient(180deg, rgba(28, 23, 48, 0.8), rgba(20, 16, 31, 0.92));
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+}
+
+.backBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  height: 36px;
+  padding: 0 12px 0 8px;
+  border-radius: var(--r-pill);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.4px;
+  transition: background 0.2s;
+}
+
+.backBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.backBtn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.titleArea {
+  flex: 1;
+  min-width: 0;
+}
+
+.gameTitle {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  background: linear-gradient(135deg, #fff7d4 0%, #ffd86b 60%, #b46cff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 1.5px;
+}
+
+.gameMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: var(--text-mute);
+  margin-top: 4px;
+  letter-spacing: 0.4px;
+}
+
+.dot {
+  width: 3px;
+  height: 3px;
+  background: var(--text-faint);
+  border-radius: 50%;
+}
+
+.headerRight {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.balanceCard {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 6px 16px;
+  border-radius: var(--r-md);
+  border: 1px solid rgba(247, 201, 72, 0.3);
+  background: rgba(247, 201, 72, 0.08);
+}
+
+.balanceLabel {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--text-faint);
+  text-transform: uppercase;
+}
+
+.balanceValue {
+  font-weight: 800;
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(135deg, #ffeaa3, #f7c948);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.body {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 20px;
+  align-items: start;
+}
+
+.gameWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.frameOuter {
+  position: relative;
+  padding: 18px;
+  border-radius: var(--r-xl);
+  background:
+    radial-gradient(120% 90% at 0% 0%, rgba(180, 108, 255, 0.18), transparent 60%),
+    radial-gradient(120% 90% at 100% 100%, rgba(247, 201, 72, 0.15), transparent 60%),
+    linear-gradient(180deg, #1d1530 0%, #14101f 100%);
+  border: 1px solid rgba(247, 201, 72, 0.18);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.frameOuter::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border-radius: calc(var(--r-xl) - 4px);
+  border: 1px solid rgba(255, 216, 107, 0.18);
+  pointer-events: none;
+}
+
+.frameInner {
+  position: relative;
+  padding: 4px 4px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reelsWrap {
+  position: relative;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: linear-gradient(180deg, #050308 0%, #0a0612 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  box-shadow:
+    inset 0 6px 20px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 2px rgba(255, 216, 107, 0.06);
+}
+
+.reels {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  width: 100%;
+  aspect-ratio: 5 / 3;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.paylineSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.linesIndicator {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 0 6px;
+}
+
+.lineDot {
+  min-width: 28px;
+  height: 24px;
+  padding: 0 6px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  font-size: 11px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-dim);
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.lineDot:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.lineActive {
+  color: var(--text);
+  background: rgba(180, 108, 255, 0.18);
+  border-color: rgba(180, 108, 255, 0.4);
+}
+
+.lineHighlight {
+  background: linear-gradient(135deg, rgba(255, 216, 107, 0.3), rgba(247, 162, 58, 0.25));
+  border-color: rgba(255, 216, 107, 0.55);
+  color: #fff;
+  box-shadow: 0 0 14px rgba(255, 216, 107, 0.45);
+}
+
+.winList {
+  background:
+    linear-gradient(180deg, rgba(28, 23, 48, 0.8), rgba(20, 16, 31, 0.92));
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 14px 16px;
+}
+
+.winListTitle {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.winListUl {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 4px 16px;
+}
+
+.winRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 8px;
+  border-radius: var(--r-sm);
+  font-size: 12px;
+}
+
+.winRow:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.winLineLabel {
+  font-weight: 600;
+  color: var(--text);
+  letter-spacing: 0.4px;
+}
+
+.winSym {
+  color: var(--text-mute);
+  text-transform: capitalize;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+}
+
+.winPayout {
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(135deg, #ffeaa3, #f7c948);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.aside {
+  position: sticky;
+  top: calc(var(--topnav-h) + 12px);
+}
+
+@media (max-width: 1100px) {
+  .body {
+    grid-template-columns: 1fr;
+  }
+  .aside {
+    position: static;
+  }
+}
+
+@media (max-width: 700px) {
+  .gameMeta {
+    flex-wrap: wrap;
+  }
+  .balanceCard {
+    padding: 5px 12px;
+  }
+  .frameOuter {
+    padding: 12px;
+  }
+}
